@@ -38,10 +38,10 @@ const create = function (req, res) {
         }
     });
 }
-const creatSession = function (req, res) {
-    res.status(200).end();
+const createSession = function (req, res) {
+    return res.redirect('/');
 }
 
 module.exports = {
-    profile, signIn, signUp, creatSession, create
+    profile, signIn, signUp, createSession, create
 }
