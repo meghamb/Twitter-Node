@@ -48,6 +48,11 @@ const createSession = function (req, res) {
     return res.redirect('/');
 }
 
+const destroySession = function (req, res) {
+    req.logout();
+    return res.redirect('/');
+}
+
 module.exports = {
-    profile, signIn, signUp, createSession, create
+    profile, signIn, signUp, createSession, create, destroySession
 }

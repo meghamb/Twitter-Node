@@ -1,5 +1,5 @@
 const express = require('express');
-const { profile, signIn, signUp, create, createSession } = require('../controllers/userController');
+const { profile, signIn, signUp, create, createSession, destroySession } = require('../controllers/userController');
 const router = express.Router();
 const passport = require('passport');
 
@@ -14,5 +14,6 @@ router.post('/create-session', passport.authenticate(
         failureRedirect: '/signin'
     }
 ), createSession);
+router.get('/signout', destroySession);
 
 module.exports = router;
