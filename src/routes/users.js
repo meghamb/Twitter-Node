@@ -3,7 +3,7 @@ const { profile, signIn, signUp, create, createSession } = require('../controlle
 const router = express.Router();
 const passport = require('passport');
 
-router.get('/profile', profile);
+router.get('/profile', passport.checkAuthentication, profile);
 router.get('/signin', signIn);
 router.get('/signup', signUp);
 router.post('/create', create);

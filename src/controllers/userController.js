@@ -4,12 +4,18 @@ const profile = function (req, res) {
 }
 
 const signUp = function (req, res) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('users/userSignUp', {
         title: 'Twitter | Sign Up'
     });
 }
 
 const signIn = function (req, res) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('users/userSignIn', {
         title: 'Twitter | Sign In'
     });
