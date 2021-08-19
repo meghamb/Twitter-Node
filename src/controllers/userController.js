@@ -22,7 +22,7 @@ const signIn = function (req, res) {
 }
 
 const create = function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     if (req.body.password != req.body.confirmPassword) {
         return res.redirect('back');
     }

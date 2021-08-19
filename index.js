@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 // using mongostore because on refresh the cookie exists, but signin info not haved, asks/looks for new cookie
 const mongoStore = require('connect-mongo');
+const sassMiddleware=require('node-sass-middleware');
 
 const passportLocal = require('./src/config/passport-local-strategy');
 
@@ -14,6 +15,13 @@ const connect = require('./src/config/database');
 
 const app = express();
 
+app.use(sassMiddleware({
+    src:'./src/assets/scss',
+    dest:'./src/assets/css',
+    debug:true,
+    outputStyle:'expanded',
+    prefix: '/css'
+}));
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
