@@ -13,7 +13,7 @@ const passportLocal = require('./src/config/passport-local-strategy');
 const router = require('./src/routes/index');
 const connect = require('./src/config/database');
 
-const app = express();
+const app = express(); 
 
 app.use(sassMiddleware({
     src:'./src/assets/scss',
