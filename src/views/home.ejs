@@ -4,7 +4,7 @@
 <section>
     <h4>Create A Tweet!</h4>
     <form action="/tweets/create" method="POST">
-        <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet.."></textarea>
+        <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet.." required></textarea>
         <input type="submit" value="Create Tweet">
     </form>
 </section>
@@ -15,13 +15,19 @@
             <li><h2><%= tweet.content %> </h2></li>
             <small><b><%= tweet.user.name %></b></small>
             <div>
-            <% if(locals.user) { %> 
-                <form action="/comments/create" method="POST">
-                    <input type="text" name="content" id="" placeholder="Your Comment..">
-                    <input type="hidden" name="tweet" value="<%= tweet._id %>">
-                    <input type="submit" value="Add comment">
-                </form>
-                <% } %> 
+                <ul>
+                    <% for(comment of tweet.comments) { %>
+                        <li><%= comment.content %> </li>
+                        <small><%= comment.user.name %></small>
+                    <% } %>  
+                    <% if(locals.user) { %> 
+                        <form action="/comments/create" method="POST">
+                            <input type="text" name="content" id="" placeholder="Your Comment.." required>
+                            <input type="hidden" name="tweet" value="<%= tweet._id %>">
+                            <input type="submit" value="Add comment">
+                        </form>
+                        <% } %> 
+                </ul>
             </div>
             <hr>
         <% } %>  

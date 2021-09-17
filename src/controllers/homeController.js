@@ -2,8 +2,13 @@ const ejs = require('ejs');
 const Tweet=require('../models/tweet');
 
 module.exports.root = function (req, res) {
-    Tweet.find({}).populate('user').exec(function (err, tweets) {
-        // console.log(tweets);
+    Tweet.find({}).populate('user').populate({
+        path: 'comments ',
+        populate:{
+            path:'user'
+        }
+    }).exec(function (err, tweets) {
+        // console.log(tweets[2].comments);
         let fetchedTweets= tweets;
         if (err) {
             console.log(err);

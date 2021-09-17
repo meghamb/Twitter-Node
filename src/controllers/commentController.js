@@ -17,16 +17,15 @@ const create = function(req, res) {
             },function(err,comment){
                 if (err) {
                     console.log('err in creating comment');
-                    return res.redirect('./');
+                    return res.redirect('/');
                 }
                 tweet.comments.push(comment);
                 tweet.save();
-                return res.redirect('./');
+                return res.redirect('/');
             })
         }
     });
 }
-
 module.exports = {
     create 
 };
