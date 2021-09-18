@@ -7,11 +7,13 @@ const passport = require('passport');
 // using mongostore because on refresh the cookie exists, but signin info not haved, asks/looks for new cookie
 const mongoStore = require('connect-mongo');
 const sassMiddleware=require('node-sass-middleware');
+const flash = require('connect-flash');
 
 const passportLocal = require('./src/config/passport-local-strategy');
 
 const router = require('./src/routes/index');
 const connect = require('./src/config/database');
+const {setFlash}=require('./src/config/middleware');
 
 const app = express(); 
 
@@ -61,6 +63,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+/* https://www.npmjs.com/package/connect-flash */
+app.use(flash());
+app.use(setFlash);
 
 app.use('/', router);
 
