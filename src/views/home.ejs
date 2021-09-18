@@ -12,14 +12,26 @@
 <div>
     <ul>
         <% for(tweet of tweets) { %>
-            <li><h2><%= tweet.content %> </h2></li>
+            <li><h2><%= tweet.content %> </h2>
+                <% if(locals.user && locals.user.id === tweet.user.id) { %> 
+                    <form action="/tweets/destroy/<%= tweet._id %>" method="GET">
+                        <input type="submit" value="Delete">
+                    </form>
+                <% } %> 
+            </li>
             <small><b><%= tweet.user.name %></b></small>
             <div>
                 <ul>
                     <% for(comment of tweet.comments) { %>
-                        <li><%= comment.content %> </li>
+                        <li><%= comment.content %>
+                            <% if(locals.user && locals.user.id === comment.user.id) { %> 
+                                <form action="/comments/destroy/<%= comment._id %>" method="GET">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            <% } %> 
+                        </li>
                         <small><%= comment.user.name %></small>
-                    <% } %>  
+                    <% } %>
                     <% if(locals.user) { %> 
                         <form action="/comments/create" method="POST">
                             <input type="text" name="content" id="" placeholder="Your Comment.." required>
