@@ -1,16 +1,16 @@
-<h1>Welcome to <%= title %></h1>
 <!-- <%= (JSON.stringify(locals)) %>  -->
 <% if(locals.user) { %> 
-<section>
+<div class="col-lg-4">
     <h4>Create A Tweet!</h4>
     <form action="/tweets/create" method="POST">
-        <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet.." required></textarea>
-        <input type="submit" value="Create Tweet">
+        <textarea  class="form-control m-4 mb-1" name="content" id="" cols="30" rows="10" placeholder="Your tweet.." required></textarea>
+        <!-- <input type="submit" value="Create Tweet"> -->
+        <button type="submit" class="btn btn-dark mt-1">Create Tweet</button>
     </form>
-</section>
+</div>
 <% } %> 
-<div>
-    <ul>
+<div class="col-lg-8">
+    <ul class="list-group list-group-flush">
         <% for(tweet of tweets) { %>
             <%- include('./tweets/_tweet') %> 
         <% } %>  

@@ -1,9 +1,10 @@
-<li><%= comment.content %>
+<li class="mb-3">
+    <%= comment.content %>
+    <small class="d-flex"><%= comment.user.name %></small>
     <% if(locals.user && locals.user.id === comment.user.id) { %> 
-        <!-- <form action="/comments/destroy/<%= comment.id %>" method="GET">
-            <input type="submit" value="X">
-        </form> -->
-        <button><a href="/comments/destroy/<%= comment.id %>">Delete</a></button>
+        <form action="/comments/destroy/<%= comment.id %>" method="GET">
+            <button type="submit" class="btn btn-dark btn-sm">Delete</button>
+        </form>
+        <!-- <button><a href="/comments/destroy/<%= comment.id %>">Delete</a></button> -->
     <% } %> 
 </li>
-<small><%= comment.user.name %></small>

@@ -1,23 +1,33 @@
-<li><h2><%= tweet.content %> </h2>
-    <% if(locals.user && locals.user.id === tweet.user.id) { %> 
-        <form action="/tweets/destroy/<%= tweet._id %>" method="GET">
-            <input type="submit" value="Delete">
-        </form>
-    <% } %> 
-</li>
-<small><b><%= tweet.user.name %></b></small>
-<div>
-    <ul>
-        <% for(comment of tweet.comments) { %>
-            <%- include('../comments/_comment') %> 
-        <% } %>
-        <% if(locals.user) { %> 
-            <form action="/comments/create" method="POST">
-                <input type="text" name="content" id="" placeholder="Your Comment.." required>
-                <input type="hidden" name="tweet" value="<%= tweet._id %>">
-                <input type="submit" value="Add comment">
-            </form>
+<li class="list-group-item">
+    <div class="card">
+        <div class="card-body">
+          <p class="card-text m-0"><%= tweet.content %></p>
+            <% if(locals.user && locals.user.id === tweet.user.id) { %> 
+                <form action="/tweets/destroy/<%= tweet._id %>" method="GET" style="display: inline-block;">
+                    <button type="submit" class="btn btn-dark btn-sm">Delete</button>
+                </form>
             <% } %> 
-    </ul>
-</div>
-<hr>
+            <em>-<%= tweet.user.name %></em>
+
+            <div class="container">
+                <ul class="list-group mt-3">
+                    <% for(comment of tweet.comments) { %>
+                        <%- include('../comments/_comment') %> 
+                    <% } %>
+                    <% if(locals.user) { %> 
+                        <form action="/comments/create" method="POST">
+                            <input class="form-control" type="text" name="content" id="" placeholder="Your Comment.." required>
+                            <input type="hidden" name="tweet" value="<%= tweet._id %>">
+                        <button type="submit" class="btn btn-dark btn-sm mt-2">Add comment</button>
+                        </form>
+                        <% } %> 
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+</li>
