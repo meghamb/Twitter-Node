@@ -1,0 +1,23 @@
+<li><h2><%= tweet.content %> </h2>
+    <% if(locals.user && locals.user.id === tweet.user.id) { %> 
+        <form action="/tweets/destroy/<%= tweet._id %>" method="GET">
+            <input type="submit" value="Delete">
+        </form>
+    <% } %> 
+</li>
+<small><b><%= tweet.user.name %></b></small>
+<div>
+    <ul>
+        <% for(comment of tweet.comments) { %>
+            <%- include('../comments/_comment') %> 
+        <% } %>
+        <% if(locals.user) { %> 
+            <form action="/comments/create" method="POST">
+                <input type="text" name="content" id="" placeholder="Your Comment.." required>
+                <input type="hidden" name="tweet" value="<%= tweet._id %>">
+                <input type="submit" value="Add comment">
+            </form>
+            <% } %> 
+    </ul>
+</div>
+<hr>

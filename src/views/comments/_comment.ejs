@@ -1,0 +1,9 @@
+<li><%= comment.content %>
+    <% if(locals.user && locals.user.id === comment.user.id) { %> 
+        <!-- <form action="/comments/destroy/<%= comment.id %>" method="GET">
+            <input type="submit" value="X">
+        </form> -->
+        <button><a href="/comments/destroy/<%= comment.id %>">Delete</a></button>
+    <% } %> 
+</li>
+<small><%= comment.user.name %></small>
