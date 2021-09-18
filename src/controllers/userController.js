@@ -1,6 +1,33 @@
 const User = require('../models/user');
+
 const profile = function (req, res) {
-    return res.render('users/userProfile');
+    User.findById(req.params.id, function(err,user){
+        if (err) {
+            console.log(err);
+            return res.redirect('/');
+        }
+        if(!user){
+            console.log('user not found')
+            return res.redirect('/');
+        }
+        return res.render('users/userProfile', {
+            title:'User Profile',
+            profile_user: user
+        });
+    })
+}
+
+const update = function (req, res) {
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.user.id, req.body, function(err,user){
+            if (err) {
+                console.log('err updating user name');
+                return res.redirect('/');
+            }
+            return res.redirect('back');
+        })
+    }else
+        return res.status(401).isAuthenticated('Unauthorised');
 }
 
 const signUp = function (req, res) {
@@ -54,5 +81,6 @@ const destroySession = function (req, res) {
 }
 
 module.exports = {
-    profile, signIn, signUp, createSession, create, destroySession
+    profile, signIn, signUp, createSession, create, destroySession,
+    update
 }

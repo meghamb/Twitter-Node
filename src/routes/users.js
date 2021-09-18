@@ -1,9 +1,10 @@
 const express = require('express');
-const { profile, signIn, signUp, create, createSession, destroySession } = require('../controllers/userController');
+const { profile, signIn, signUp, create, createSession, destroySession, update } = require('../controllers/userController');
 const router = express.Router();
 const passport = require('passport');
 
-router.get('/profile', passport.checkAuthentication, profile);
+router.get('/profile/:id', passport.checkAuthentication, profile);
+router.post('/update/:id', passport.checkAuthentication, update);
 router.get('/signin', signIn);
 router.get('/signup', signUp);
 router.post('/create', create);

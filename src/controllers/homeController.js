@@ -1,5 +1,6 @@
 const ejs = require('ejs');
 const Tweet=require('../models/tweet');
+const User=require('../models/user');
 
 module.exports.root = function (req, res) {
     Tweet.find({}).populate('user').populate({
@@ -7,13 +8,18 @@ module.exports.root = function (req, res) {
         populate:{
             path:'user'
         }
-    }).exec(function (err, tweets) {
-        // console.log(tweets[2].comments);
-        let fetchedTweets= tweets;
+    }).exec(async function (err, tweets) {
         if (err) {
             console.log(err);
             fetchedTweets=[];
         }
-        return res.render('home', { title: "Twitter" ,tweets:fetchedTweets});
+        const users= await User.find({});
+        // console.log(tweets[2].comments);
+        let fetchedTweets= tweets;
+        return res.render('home', {
+            title: "Twitter" ,
+            tweets:fetchedTweets,
+            users: users
+        });
     });
 }
