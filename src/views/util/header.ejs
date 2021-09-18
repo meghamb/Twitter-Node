@@ -1,17 +1,35 @@
-<ul>
-    <% if(locals.user) { %>
-        Hi <li>
-            <%= user.name %>
-        </li>
-        <li>
-            <a href="/users/signout">Log Out</a>
-        </li>
-        <% } else {%>
-            <li>
-                <a href="/users/signin">Sign In</a>
-            </li>
-            <li>
-                <a href="/users/signup">Sign Up</a>
-            </li>
-            <% }%>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex flex-grow-1">
+            <span class="w-100 d-lg-none d-block">
+                <!-- hidden spacer to center brand on mobile --></span>
+            <a class="navbar-brand d-none d-lg-inline-block" href="#"> Twitter!</a>
+            <div class="w-100 text-right">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+            <ul class="navbar-nav ms-auto flex-nowrap">
+                <% if(locals.user) { %> 
+                    <li class="nav-item me-auto ">
+                        <a class="nav-link active" aria-current="page" href="#">Hi <%= user.name %></a>
+                    </li>
+                <% }%>
+                <% if(locals.user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/signout">Log Out</a>
+                    </li>
+                <% } else {%>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="/users/signin">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/signup">Sign Up</a>
+                    </li>
+                <% }%>
+            </ul>
+        </div>
+    </div>
+</nav>

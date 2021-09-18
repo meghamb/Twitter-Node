@@ -7,9 +7,10 @@ const create = async function(req, res) {
             content:req.body.content,
             user:req.user._id
         }) ;
+        req.flash ('info', 'Tweet created');
         return res.redirect('back');
     } catch(err) {
-        console.log('err in creating tweet');
+        console.log(err);
         return;
     }
 }
