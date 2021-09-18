@@ -1,30 +1,25 @@
 const Tweet = require('../models/tweet');
 const Comment = require('../models/comment');
 
-const create = function(req, res) {
-    // console.log(req);
-    Tweet.create({
-        content:req.body.content,
-        user:req.user._id
-    },function(err){
-        if (err) {
-            console.log('err in creating tweet');
-            return;
-        }
+const create = async function(req, res) {
+    try {
+        await Tweet.create({
+            content:req.body.content,
+            user:req.user._id
+        }) ;
         return res.redirect('back');
-    })
+    } catch(err) {
+        console.log('err in creating tweet');
+        return;
+    }
 }
 
-const destroy= function (req, res){
-    Tweet.findById(req.params.id, function(err, tweet){
+const destroy= async function (req, res){
+    try {
+        const tweet= await Tweet.findById(req.params.id);
         /* console.log(req.user._id, typeof(tweet,req.user._id),req.user.id, typeof(tweet,req.user.id));
         req.user._id is object while req.user.id is string 
         check when to use _id and id */
-
-        if (err) {
-            console.log('err in deleting tweet');
-            return res.redirect('/');
-        } 
         if(tweet.user == req.user.id){
             tweet.remove();
             Comment.deleteMany({tweet: req.params.id},function(err, comments){
@@ -35,7 +30,10 @@ const destroy= function (req, res){
             });
         }
         return res.redirect('back');
-    });
+    }catch(err){
+        console.log(err);
+        return res.redirect('/');
+    }
 }
 
 module.exports = {
