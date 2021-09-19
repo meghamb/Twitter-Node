@@ -8,7 +8,9 @@ const passport = require('passport');
 const mongoStore = require('connect-mongo');
 const sassMiddleware=require('node-sass-middleware');
 const flash = require('connect-flash');
-
+// file upload
+const multer  = require('multer');
+const upload = multer({ dest: './src/uploads/' });
 const passportLocal = require('./src/config/passport-local-strategy');
 
 const router = require('./src/routes/index');
@@ -66,7 +68,12 @@ app.use(passport.setAuthenticatedUser);
 /* https://www.npmjs.com/package/connect-flash */
 app.use(flash());
 app.use(setFlash);
-
+// app.post('/profile', upload.single('avatar'), function (req, res, next) {
+//     // req.file is the `avatar` file
+//     // req.body will hold the text fields, if there were any
+//     console.log("Uploaded");
+//     return res.redirect('/');
+//   })
 app.use('/', router);
 
 app.listen(3000, async () => {
