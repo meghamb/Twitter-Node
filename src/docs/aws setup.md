@@ -8,3 +8,9 @@
 - add user (twitter)
   - Access key - Programmatic access(select this option)
   - set permission - Attach existing policies directly - s3demopolicy(the policy you created in prev. step)
+
+#### Links
+
+- Read https://cron-job.org/en/
+- mails use smtp protocol
+- if api can handle only one request at a time , but you are making 10 requests, the system will crash so use process queues

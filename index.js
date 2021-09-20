@@ -6,26 +6,28 @@ const session = require('express-session');
 const passport = require('passport');
 // using mongostore because on refresh the cookie exists, but signin info not haved, asks/looks for new cookie
 const mongoStore = require('connect-mongo');
-const sassMiddleware=require('node-sass-middleware');
+const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 // file upload
-const multer  = require('multer');
+const multer = require('multer');
 const upload = multer({ dest: './src/uploads/' });
 const passportLocal = require('./src/config/passport-local-strategy');
 
 const router = require('./src/routes/index');
 const connect = require('./src/config/database');
-const {setFlash}=require('./src/config/middleware');
+const { setFlash } = require('./src/config/middleware');
 
-const app = express(); 
+const app = express();
 
-app.use(sassMiddleware({
-    src:'./src/assets/scss',
-    dest:'./src/assets/css',
-    debug:true,
-    outputStyle:'expanded',
-    prefix: '/css'
-}));
+app.use(
+  sassMiddleware({
+    src: './src/assets/scss',
+    dest: './src/assets/css',
+    debug: true,
+    outputStyle: 'expanded',
+    prefix: '/css',
+  })
+);
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
@@ -45,22 +47,26 @@ app.set('view engine', 'ejs');
 app.set('views', './src/views');
 // This is the secret used to sign the session cookie.
 // Settings object for the session ID cookie.
-app.use(session({
+app.use(
+  session({
     name: 'twitter',
     secret: 'meghamegha',
     resave: false,
     cookie: {
-        maxAge: 6000000
+      maxAge: 6000000,
     },
-    store: new mongoStore({
+    store: new mongoStore(
+      {
         mongoUrl: 'mongodb://localhost/twitter_dev',
-        autoRemove: 'disable'
-    }, function (err) {
-        if (err)
-            console.error(err);
+        autoRemove: 'disable',
+      },
+      function (err) {
+        if (err) console.error(err);
         console.log('connect-mongo setup done');
-    })
-}));
+      }
+    ),
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -77,6 +83,6 @@ app.use(setFlash);
 app.use('/', router);
 
 app.listen(3000, async () => {
-    await connect();
-    console.log('Server started at port 3000');
+  await connect();
+  console.log('Server started at port 3000');
 });
