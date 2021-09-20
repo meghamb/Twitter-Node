@@ -4,7 +4,7 @@ const newCommentMailer = function (tweet) {
   console.log(tweet);
   mailer.transporter.sendMail(
     {
-      from: 'Twitter 🐥 <comments@twitter.com>', // sender address
+      from: '"Twitter 🐥" <comments@twitter.com>', // sender address
       to: tweet.user.email, // list of receivers
       subject: 'New Comment On Your Tweet ✔', // Subject line
       html: '<b>New Comment on The Tweet</b>', // html body

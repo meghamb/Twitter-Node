@@ -14,3 +14,7 @@
 - Read https://cron-job.org/en/
 - mails use smtp protocol
 - if api can handle only one request at a time , but you are making 10 requests, the system will crash so use process queues
+
+Brew
+
+- brew services start redis
