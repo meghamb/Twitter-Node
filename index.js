@@ -18,6 +18,14 @@ const connect = require('./src/config/database');
 const { setFlash } = require('./src/config/middleware');
 
 const app = express();
+app.use(cors());
+
+/* SOCKET config */
+const chatEngine = require('http').Server(app);
+const { socket } = require('./src/config/sockets');
+const chatSocket = socket(chatEngine);
+chatEngine.listen(3001);
+console.log('chat engine listening to 3001');
 
 app.use(
   sassMiddleware({
@@ -28,7 +36,6 @@ app.use(
     prefix: '/css',
   })
 );
-app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 // setting path for static contents

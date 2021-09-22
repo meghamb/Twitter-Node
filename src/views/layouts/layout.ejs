@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/layout.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
-    />
-    <%- style %>
-  </head>
 
-  <body>
-    <%- include('../util/header'); %>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/css/layout.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
+  <%- style %>
+</head>
+
+<body>
+  <%- include('../util/header'); %>
     <!-- <% if(flash.success && flash.success.length>0) {%>
             <div class="alert alert-success" role="alert">
                 <%= flash.success %>
             </div>
         <% } %>  -->
     <% if(flash.error && flash.error.length>0) {%>
-    <div class="alert alert-error" role="alert"><%= flash.error %></div>
-    <% } %> <%- body %> <%- include('../util/footer'); %> <%- script %> <%
-    if(flash.info && flash.info.length > 0) { %>
-    <script>
-      new Noty({
-        theme: 'mint',
-        text: '<%= flash.info %>',
-        type: 'info',
-        layout: 'topRight',
-      }).show();
-    </script>
-    <% } %> <% if(flash.success && flash.success.length > 0) { %>
-    <script>
-      new Noty({
-        theme: 'relax',
-        text: '<%= flash.success %>',
-        type: 'success',
-        layout: 'topCenter',
-      }).show();
-    </script>
-    <% } %>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-      integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+      <div class="alert alert-error" role="alert">
+        <%= flash.error %>
+      </div>
+      <% } %>
+        <%- body %>
+          <%- include('../util/footer'); %>
+            <%- script %>
+              <% if(flash.info && flash.info.length> 0) { %>
+                <script>
+                  new Noty({
+                    theme: 'mint',
+                    text: '<%= flash.info %>',
+                    type: 'info',
+                    layout: 'topRight',
+                  }).show();
+                </script>
+                <% } %>
+                  <% if(flash.success && flash.success.length> 0) { %>
+                    <script>
+                      new Noty({
+                        theme: 'relax',
+                        text: '<%= flash.success %>',
+                        type: 'success',
+                        layout: 'topCenter',
+                      }).show();
+                    </script>
+                    <% } %>
+                      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+                        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+                        crossorigin="anonymous"></script>
+</body>
+
 </html>
