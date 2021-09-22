@@ -54,8 +54,10 @@ passport.checkAuthentication = function (req, res, next) {
 };
 
 passport.setAuthenticatedUser = function (req, res, next) {
-  // console.log(req);
+  console.log(req);
   if (req.isAuthenticated()) {
+    /* all ejs files use this locals.user to check if user exists,
+      hence we are saving it in res.locals.user */
     res.locals.user = req.user;
   }
   next();
