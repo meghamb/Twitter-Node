@@ -1,6 +1,6 @@
 <!-- <%= (JSON.stringify(locals.user)) %> -->
 <% if(locals.user) { %>
-  <div class="col-lg-4">
+  <div class="col-lg-4 mx-auto">
     <h4>Create A Tweet! <%= user.name %>
     </h4>
     <form action="/tweets/create" method="POST">
@@ -11,7 +11,7 @@
     </form>
   </div>
   <% } %>
-    <div class="col-lg-8">
+    <div class="col-lg-8 mx-auto">
       <ul class="list-group list-group-flush">
         <% for(tweet of tweets) { %>
           <%- include('./tweets/_tweet') %>

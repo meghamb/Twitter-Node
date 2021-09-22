@@ -30,7 +30,7 @@ Amazon EC2
 - Downloads % ls -l | grep <filename>.pem
 - chmod 600 <filename>.pem
 - ls -l | grep twit
-- ssh -i <filename>.pem ubuntu@52.66.196.48
+- ssh -i <filename>.pem ubuntu@"yourPublichostsite"
   (yes)
 - whoami
 - https://github.com/nvm-sh/nvm#install--update-script download nvm on ubuntu ,
@@ -39,7 +39,7 @@ Amazon EC2
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 - Check nvm is installed --> nvm -v --> shows 0.38.0 or latest version
 - Exit from ubuntu by typing --> exit
-- To reenter --> ssh -i <filename>.pem ubuntu@52.66.196.48
+- To reenter --> ssh -i <filename>.pem ubuntu@"yourPublichostsite"
 - nvm i 14.17.3
 - Install mongodb on ubuntu(follow https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ )
 
@@ -121,7 +121,7 @@ Amazon EC2
     }
   - sudo nginx -t
   - sudo systemctl restart nginx
-  - now without port you can access http:<site>
+  - now without port you can access http:"yourPublichostsite"
   - so you can remove inbound rule on port 3000 now.
 
 Enjoy!!!
